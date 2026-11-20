@@ -117,7 +117,15 @@ function QuotaPanel() {
   const [limitError, setLimitError] = useState<string | null>(null);
 
   const today = dayString(new Date());
-  const models = useMemo(() => buildModels(rows), [rows]);
+  const models = useMemo(() => {
+    const options = buildModels(rows);
+    if (options.length > 0) return options;
+    // 没有本地用量时仍然能看订阅配额：给出 Claude / Codex 两个入口。
+    return [
+      { key: "claude\u0000", engine: "claude", model: "", label: "Claude · 订阅配额", tokens: 0 },
+      { key: "codex\u0000", engine: "codex", model: "", label: "Codex · 订阅配额", tokens: 0 },
+    ];
+  }, [rows]);
   const selectedModel = models.find((model) => model.key === selected) ?? models[0];
   const totals = useMemo(() => totalsFor(rows, selectedModel, today), [rows, selectedModel, today]);
   const providerId = providerFor(selectedModel);
