@@ -1,0 +1,15 @@
+{
+  "spec": 1,
+  "id": "com.cicada.ai-quota",
+  "publisher": "cicada",
+  "name": "AI 配额与用量",
+  "version": "0.1.0",
+  "tier": "js",
+  "description": "选择任意模型，查看该模型的订阅配额、今日 Token 用量、近 30 天趋势与估算成本。",
+  "author": "Cicada Technology",
+  "license": "MIT",
+  "minAppVersion": "1.2.5",
+  "sdkVersion": "^0.3",
+  "permissions": ["ui:panel-tab", "usage.read", "limits.read", "storage"],
+  "contributes": {}
+}
