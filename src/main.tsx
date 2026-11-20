@@ -358,6 +358,13 @@ function PanelContainer(_props: { workspacePath: string }) {
     root.render(<QuotaPanel />);
     return () => root.unmount();
   }, [h]);
+  if (host?.host.isWeb) {
+    return h.createElement(
+      "div",
+      { className: "quota-panel quota-empty" },
+      "AI 配额与用量需要桌面版 Sage（Web 客户端无法读取本机用量与登录状态）。",
+    );
+  }
   return h.createElement("div", { ref, className: "sage-quota-root" });
 }
 
